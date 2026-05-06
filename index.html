@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>NanoGate Premium Request</title>
+  <title>NanoGate Premium Response</title>
 
   <style>
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -51,7 +51,7 @@
       box-shadow:0 0 0 1px rgba(201,168,91,.34),0 0 16px rgba(88,214,255,.10),inset 0 1px 0 rgba(255,255,255,.42)
     }
     .logo img{width:100%;height:100%;object-fit:cover;display:block}
-    .logo-fallback{position:absolute;inset:0;display:grid;place-items:center;color:#050b10;font-size:15px;font-weight:950;letter-spacing:-.06em}
+    .logo-fallback{position:absolute;inset:0;display:grid;place-items:center;color:#050b10;font-size:15px;font-weight:950;letter-spacing:-.06em;z-index:-1}
     .brand-title{font-size:19px;line-height:1;font-weight:950;letter-spacing:-.065em;color:#f8fbff;white-space:nowrap}
     .brand-title span{color:var(--blue);text-shadow:0 0 14px rgba(88,214,255,.20)}
     .brand-sub{margin-top:5px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(237,209,138,.72);white-space:nowrap}
@@ -65,7 +65,6 @@
     .head-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 11px rgba(88,214,255,.72)}
     .app.paid .head-chip{color:#eafff0;border-color:rgba(72,232,154,.18);background:rgba(72,232,154,.065)}
     .app.paid .head-dot{background:var(--green);box-shadow:0 0 13px rgba(72,232,154,.82)}
-    .app.protected .head-chip{color:#d7ecff;border-color:rgba(88,214,255,.18);background:rgba(88,214,255,.055)}
     .app.error .head-chip{color:#ffdada;border-color:rgba(255,118,118,.24);background:rgba(255,118,118,.07)}
     .app.error .head-dot{background:var(--red);box-shadow:0 0 13px rgba(255,118,118,.8)}
 
@@ -174,7 +173,7 @@
 
     .action-row{margin-top:10px;display:grid;grid-template-columns:1fr;gap:8px}
     .receipt{display:none;margin-top:10px;border-top:1px solid rgba(201,168,91,.11);padding:13px;background:linear-gradient(180deg,rgba(201,168,91,.024),rgba(0,0,0,0))}
-    .app.paid .receipt,.app.protected .receipt,.app.error .receipt{display:block;animation:rise .28s ease both}
+    .app.paid .receipt,.app.error .receipt{display:block;animation:rise .28s ease both}
     @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
     .receipt-card{border-radius:21px;border:1px solid rgba(201,168,91,.115);background:radial-gradient(circle at 100% 0%,rgba(201,168,91,.065),transparent 34%),radial-gradient(circle at 0% 100%,rgba(88,214,255,.032),transparent 35%),rgba(0,0,0,.20);padding:13px;position:relative;overflow:hidden}
@@ -211,7 +210,10 @@
     .sheet-title{font-size:20px;line-height:1;font-weight:950;letter-spacing:-.055em;color:#f8fbff}.sheet-text{margin-top:8px;font-size:12px;line-height:1.45;color:var(--soft)}
     .wallet-options{display:grid;gap:8px;margin-top:13px}
     .wallet-option{min-height:58px;border-radius:18px;border:1px solid rgba(255,255,255,.050);background:rgba(0,0,0,.24);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 11px;color:#f3f8ff;text-align:left}
-    .wallet-option-left{display:flex;align-items:center;gap:10px;min-width:0}.wallet-icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;font-size:11px;font-weight:950;color:#06111b;background:radial-gradient(circle at 35% 25%,#fff4c8,#c9a85b 45%,#5a421a 100%);box-shadow:0 0 0 1px rgba(201,168,91,.20)}
+    .wallet-option-left{display:flex;align-items:center;gap:10px;min-width:0}
+    .wallet-icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;font-size:11px;font-weight:950;color:#06111b;background:radial-gradient(circle at 35% 25%,#fff4c8,#c9a85b 45%,#5a421a 100%);box-shadow:0 0 0 1px rgba(201,168,91,.20);position:relative;overflow:hidden}
+    .wallet-icon img{width:100%;height:100%;object-fit:cover;display:block}
+    .wallet-fallback{position:absolute;inset:0;display:grid;place-items:center}
     .wallet-name{font-size:13px;font-weight:950;color:#f3f8ff}.wallet-note{margin-top:3px;font-size:10px;color:var(--soft)}.wallet-arrow{color:var(--gold2);font-size:16px;font-weight:900}
     .network-box{margin-top:12px;padding:11px;border-radius:18px;border:1px solid rgba(88,214,255,.10);background:rgba(88,214,255,.032)}
     .network-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.network-title{font-size:12px;font-weight:950;color:#f3f8ff}
@@ -237,34 +239,34 @@
           </div>
           <div class="brand-text">
             <div class="brand-title">Nano<span>Gate</span></div>
-            <div class="brand-sub">Pagamento por requisição</div>
+            <div class="brand-sub">Pay-per-request access</div>
           </div>
         </div>
         <div class="head-chip" id="headChip"><span class="head-dot"></span>Testnet</div>
       </div>
       <div class="head-strip">
-        <div class="mini-stat">Rede <strong id="topNetwork">Arc</strong></div>
-        <div class="mini-stat gold">Preço <strong>$0.001</strong></div>
-        <div class="mini-stat">API <strong id="apiStateTop">Protegida</strong></div>
+        <div class="mini-stat">Network <strong id="topNetwork">Arc</strong></div>
+        <div class="mini-stat gold">Price <strong>$0.001</strong></div>
+        <div class="mini-stat">Demo <strong id="limitTop">30</strong></div>
       </div>
     </header>
 
     <section class="scroll">
       <div class="section">
         <section class="hero">
-          <div class="kicker">Resposta premium por microtaxa</div>
-          <h1>Libere <span>1 resposta premium</span>.</h1>
+          <div class="kicker">Premium response by micropayment</div>
+          <h1>Unlock <span>1 premium response</span>.</h1>
           <p class="lead">
-            Pague uma microtaxa e desbloqueie uma resposta protegida da API NanoGate. Nesta etapa, o Render faz um pagamento demo real.
+            Connect a wallet, run a real demo payment through Render, and unlock a protected NanoGate API response on Arc Testnet.
           </p>
           <div class="route-line">
             <div>
-              <div class="label">API protegida</div>
+              <div class="label">Protected API</div>
               <div class="value">/premium-data</div>
             </div>
             <div>
               <div class="label">Backend</div>
-              <div class="value gold" id="backendTop">Checando</div>
+              <div class="value gold" id="backendTop">Checking</div>
             </div>
           </div>
         </section>
@@ -273,8 +275,8 @@
           <article class="panel">
             <div class="panel-head">
               <div>
-                <div class="panel-title">Sessão da carteira</div>
-                <div class="panel-sub">Conecte uma carteira para preparar a sessão na Arc Testnet.</div>
+                <div class="panel-title">Wallet session</div>
+                <div class="panel-sub">Connect a wallet to prepare your Arc Testnet session.</div>
               </div>
               <div class="pill locked" id="walletStatus"><span class="led"></span>Offline</div>
             </div>
@@ -282,25 +284,25 @@
             <div class="wallet-body">
               <div class="wallet-strip">
                 <div class="wallet-main">
-                  <div class="label">Carteira conectada</div>
-                  <div class="wallet-value" id="walletValue">Não conectada</div>
+                  <div class="label">Connected wallet</div>
+                  <div class="wallet-value" id="walletValue">Not connected</div>
                 </div>
-                <button class="copy" id="copyWalletBtn" disabled>Copiar</button>
+                <button class="copy" id="copyWalletBtn" disabled>Copy</button>
               </div>
 
               <div class="proof-row">
                 <div class="proof">
                   <div class="label">Render</div>
-                  <strong id="gatewayStatus">Checando</strong>
+                  <strong id="gatewayStatus">Checking</strong>
                 </div>
                 <div class="proof">
-                  <div class="label">Resposta</div>
-                  <strong id="accessMini">Bloqueada</strong>
+                  <div class="label">Response</div>
+                  <strong id="accessMini">Locked</strong>
                 </div>
               </div>
 
               <div class="connect-row">
-                <button class="btn btn-blue" id="connectBtn">Conectar carteira</button>
+                <button class="btn btn-blue" id="connectBtn">Connect wallet</button>
               </div>
             </div>
           </article>
@@ -309,35 +311,35 @@
             <div class="pass">
               <div class="pass-main">
                 <div>
-                  <div class="label">Produto</div>
-                  <div class="pass-name">1 Resposta Premium</div>
+                  <div class="label">Product</div>
+                  <div class="pass-name">1 Premium Response</div>
                 </div>
                 <div class="price">$0.001</div>
               </div>
 
               <p class="pass-desc">
-                Uma chamada protegida da API. O Render faz o pagamento demo e libera a resposta 200 OK.
+                Demo payment via Render. Your connected wallet prepares the session; the backend demo buyer pays the protected route.
               </p>
 
               <div class="slots">
                 <div class="slot">
                   <div class="label">Status</div>
-                  <strong id="passStatus">Bloqueada</strong>
+                  <strong id="passStatus">Locked</strong>
                 </div>
                 <div class="slot">
-                  <div class="label">Antes</div>
+                  <div class="label">Before</div>
                   <strong>HTTP 402</strong>
                 </div>
                 <div class="slot">
-                  <div class="label">Depois</div>
+                  <div class="label">After</div>
                   <strong>200 OK</strong>
                 </div>
               </div>
 
               <div class="state-line">
                 <div class="state-copy">
-                  <strong id="unlockTitle">Resposta bloqueada</strong>
-                  <span id="unlockText">Conecte sua carteira e depois execute o pagamento demo real pelo Render.</span>
+                  <strong id="unlockTitle">Response locked</strong>
+                  <span id="unlockText">Connect your wallet, then run the real demo payment through Render.</span>
                 </div>
 
                 <div class="gateway-core" aria-hidden="true">
@@ -349,8 +351,8 @@
               </div>
 
               <div class="action-row">
-                <button class="btn btn-gold" id="unlockBtn" disabled>Pagar demo e liberar</button>
-                <button class="btn btn-ghost hidden" id="resetBtn">Reiniciar sessão</button>
+                <button class="btn btn-gold" id="unlockBtn" disabled>Run demo payment</button>
+                <button class="btn btn-ghost hidden" id="resetBtn">Reset session</button>
               </div>
             </div>
 
@@ -358,36 +360,40 @@
               <div class="receipt-card">
                 <div class="receipt-top">
                   <div>
-                    <div class="receipt-title" id="receiptTitle">Recibo da requisição</div>
+                    <div class="receipt-title" id="receiptTitle">Request receipt</div>
                     <div class="receipt-id" id="receiptId">NG-0000</div>
-                    <div class="proof-mark"><span></span><strong id="proofText">Aguardando pagamento</strong></div>
+                    <div class="proof-mark"><span></span><strong id="proofText">Waiting for payment</strong></div>
                   </div>
                   <div class="pill locked" id="receiptPill"><span class="led"></span>402</div>
                 </div>
 
                 <div class="lines">
                   <div class="line">
-                    <span>Rede</span>
+                    <span>Network</span>
                     <strong>eip155:5042002</strong>
                   </div>
                   <div class="line">
-                    <span>Valor</span>
+                    <span>Amount</span>
                     <strong class="gold" id="amountLine">$0.001 USDC</strong>
                   </div>
                   <div class="line">
-                    <span>Recebedor</span>
-                    <strong>0x584b...1d7E</strong>
+                    <span>Connected wallet</span>
+                    <strong id="connectedLine">Not connected</strong>
                   </div>
                   <div class="line">
-                    <span>Resultado</span>
+                    <span>Demo limit</span>
+                    <strong id="limitLine">30 per wallet</strong>
+                  </div>
+                  <div class="line">
+                    <span>Result</span>
                     <strong id="receiptResult">HTTP 402</strong>
                   </div>
                 </div>
 
                 <div class="api-box">
-                  <div class="label">Resposta do backend</div>
+                  <div class="label">Backend response</div>
                   <p id="apiText">
-                    A rota protegida ainda não foi liberada.
+                    The protected route has not been unlocked yet.
                   </p>
                 </div>
               </div>
@@ -397,16 +403,16 @@
           <article class="panel wide">
             <div class="panel-head">
               <div>
-                <div class="panel-title">Histórico da sessão</div>
-                <div class="panel-sub">Eventos do backend real aparecem aqui.</div>
+                <div class="panel-title">Session history</div>
+                <div class="panel-sub">Real backend events appear here.</div>
               </div>
             </div>
 
             <div class="history" id="historyList">
               <div class="history-item">
                 <div>
-                  <div class="history-title">Checando backend</div>
-                  <div class="history-sub">Aguardando resposta do Render</div>
+                  <div class="history-title">Checking backend</div>
+                  <div class="history-sub">Waiting for Render response</div>
                 </div>
                 <div class="tiny idle">Init</div>
               </div>
@@ -415,30 +421,33 @@
         </section>
 
         <div class="foot">
-          Nano8B: pagamento demo real pelo Render. A wallet do usuário paga direto só na próxima arquitetura.
+          Demo payment via Render. The connected wallet does not pay directly yet.
         </div>
       </div>
     </section>
   </main>
 
   <div class="wallet-overlay" id="walletOverlay">
-    <section class="wallet-sheet" role="dialog" aria-label="Conectar carteira">
-      <button class="sheet-handle" id="closeWalletSheet" aria-label="Fechar"></button>
+    <section class="wallet-sheet" role="dialog" aria-label="Connect wallet">
+      <button class="sheet-handle" id="closeWalletSheet" aria-label="Close"></button>
 
       <div class="sheet-body">
-        <div class="sheet-kicker">Carteira</div>
-        <div class="sheet-title">Conectar na NanoGate</div>
+        <div class="sheet-kicker">Wallet</div>
+        <div class="sheet-title">Connect to NanoGate</div>
         <p class="sheet-text">
-          Escolha a carteira instalada no navegador. A sessão será usada para validar a rede Arc Testnet.
+          Choose an installed wallet. This session checks Arc Testnet and applies the demo limit per wallet.
         </p>
 
         <div class="wallet-options">
           <button class="wallet-option" data-wallet="injected">
             <div class="wallet-option-left">
-              <div class="wallet-icon">W</div>
+              <div class="wallet-icon">
+                <img src="wallet-browser.png" alt="" onerror="this.style.display='none'" />
+                <span class="wallet-fallback">W</span>
+              </div>
               <div>
-                <div class="wallet-name">Carteira do navegador</div>
-                <div class="wallet-note">MetaMask, Rabby, OKX ou compatível</div>
+                <div class="wallet-name">Browser Wallet</div>
+                <div class="wallet-note">MetaMask, Rabby, OKX or compatible</div>
               </div>
             </div>
             <div class="wallet-arrow">›</div>
@@ -446,10 +455,13 @@
 
           <button class="wallet-option" data-wallet="metamask">
             <div class="wallet-option-left">
-              <div class="wallet-icon">M</div>
+              <div class="wallet-icon">
+                <img src="wallet-metamask.png" alt="" onerror="this.style.display='none'" />
+                <span class="wallet-fallback">M</span>
+              </div>
               <div>
                 <div class="wallet-name">MetaMask</div>
-                <div class="wallet-note">Usar provider injetado</div>
+                <div class="wallet-note">Use injected provider</div>
               </div>
             </div>
             <div class="wallet-arrow">›</div>
@@ -457,10 +469,27 @@
 
           <button class="wallet-option" data-wallet="rabby">
             <div class="wallet-option-left">
-              <div class="wallet-icon">R</div>
+              <div class="wallet-icon">
+                <img src="wallet-rabby.png" alt="" onerror="this.style.display='none'" />
+                <span class="wallet-fallback">R</span>
+              </div>
               <div>
-                <div class="wallet-name">Rabby / OKX</div>
-                <div class="wallet-note">Compatível com window.ethereum</div>
+                <div class="wallet-name">Rabby</div>
+                <div class="wallet-note">Use injected provider</div>
+              </div>
+            </div>
+            <div class="wallet-arrow">›</div>
+          </button>
+
+          <button class="wallet-option" data-wallet="okx">
+            <div class="wallet-option-left">
+              <div class="wallet-icon">
+                <img src="wallet-okx.png" alt="" onerror="this.style.display='none'" />
+                <span class="wallet-fallback">O</span>
+              </div>
+              <div>
+                <div class="wallet-name">OKX Wallet</div>
+                <div class="wallet-note">Use injected provider</div>
               </div>
             </div>
             <div class="wallet-arrow">›</div>
@@ -470,9 +499,9 @@
         <div class="network-box">
           <div class="network-top">
             <div class="network-title">Arc Testnet</div>
-            <div class="network-state" id="networkState">Aguardando</div>
+            <div class="network-state" id="networkState">Waiting</div>
           </div>
-          <button class="switch-btn" id="switchArcBtn">Trocar para Arc Testnet</button>
+          <button class="switch-btn" id="switchArcBtn">Switch to Arc Testnet</button>
         </div>
       </div>
     </section>
@@ -515,13 +544,15 @@
     const accessMini = document.getElementById("accessMini");
     const topNetwork = document.getElementById("topNetwork");
     const backendTop = document.getElementById("backendTop");
-    const apiStateTop = document.getElementById("apiStateTop");
+    const limitTop = document.getElementById("limitTop");
 
     const receiptTitle = document.getElementById("receiptTitle");
     const receiptPill = document.getElementById("receiptPill");
     const proofText = document.getElementById("proofText");
     const receiptResult = document.getElementById("receiptResult");
     const amountLine = document.getElementById("amountLine");
+    const connectedLine = document.getElementById("connectedLine");
+    const limitLine = document.getElementById("limitLine");
     const apiText = document.getElementById("apiText");
 
     const walletOverlay = document.getElementById("walletOverlay");
@@ -535,6 +566,7 @@
     let isArc = false;
     let backendOnline = false;
     let buyerConfigured = false;
+    let demoLimit = 30;
 
     function shortAddress(address){
       if(!address || address.length < 12) return address;
@@ -569,8 +601,8 @@
     }
 
     async function checkBackend(){
-      backendTop.textContent = "Checando";
-      gatewayStatus.textContent = "Checando";
+      backendTop.textContent = "Checking";
+      gatewayStatus.textContent = "Checking";
 
       try{
         const response = await fetch(`${API_BASE}/health`, {
@@ -586,16 +618,18 @@
 
         backendOnline = Boolean(data.ok);
         buyerConfigured = Boolean(data.buyerConfigured);
+        demoLimit = Number(data.demoPaymentLimit || 30);
 
-        backendTop.textContent = buyerConfigured ? "Pronto" : "Sem buyer";
-        gatewayStatus.textContent = buyerConfigured ? "Pronto" : "Config";
-        apiStateTop.textContent = "Protegida";
+        backendTop.textContent = buyerConfigured ? "Ready" : "No buyer";
+        gatewayStatus.textContent = buyerConfigured ? "Ready" : "Config";
+        limitTop.textContent = String(demoLimit);
+        limitLine.textContent = `${demoLimit} per wallet`;
 
         historyList.innerHTML = `
           <div class="history-item">
             <div>
               <div class="history-title">Backend online</div>
-              <div class="history-sub">Render respondeu /health com buyerConfigured: ${buyerConfigured}</div>
+              <div class="history-sub">Render /health ready • demo limit ${demoLimit}</div>
             </div>
             <div class="tiny">OK</div>
           </div>
@@ -603,8 +637,8 @@
 
         if(!buyerConfigured){
           addHistory(
-            "Buyer não configurado",
-            "BUYER_PRIVATE_KEY ainda não está ativa no Render",
+            "Demo buyer not configured",
+            "BUYER_PRIVATE_KEY is not active on Render",
             "Config",
             "bad"
           );
@@ -613,17 +647,16 @@
         backendOnline = false;
         buyerConfigured = false;
 
-        backendTop.textContent = "Erro";
+        backendTop.textContent = "Error";
         gatewayStatus.textContent = "Offline";
-        apiStateTop.textContent = "Erro";
 
         historyList.innerHTML = `
           <div class="history-item">
             <div>
-              <div class="history-title">Backend não respondeu</div>
-              <div class="history-sub">Confira CORS, Render ou URL do backend</div>
+              <div class="history-title">Backend did not respond</div>
+              <div class="history-sub">Check CORS, Render or API URL</div>
             </div>
-            <div class="tiny bad">Erro</div>
+            <div class="tiny bad">Error</div>
           </div>
         `;
       }
@@ -645,7 +678,7 @@
 
     async function updateNetworkState(){
       if(!hasEthereum()){
-        networkState.textContent = "Sem wallet";
+        networkState.textContent = "No wallet";
         networkState.className = "network-state bad";
         switchArcBtn.classList.remove("show");
         return;
@@ -661,13 +694,13 @@
           switchArcBtn.classList.remove("show");
           topNetwork.textContent = "Arc";
         }else{
-          networkState.textContent = "Rede errada";
+          networkState.textContent = "Wrong network";
           networkState.className = "network-state bad";
           switchArcBtn.classList.add("show");
           topNetwork.textContent = "Wrong";
         }
       }catch(error){
-        networkState.textContent = "Erro";
+        networkState.textContent = "Error";
         networkState.className = "network-state bad";
         switchArcBtn.classList.add("show");
       }
@@ -691,7 +724,7 @@
             params:[ARC_PARAMS]
           });
         }else{
-          networkState.textContent = "Recusado";
+          networkState.textContent = "Rejected";
           networkState.className = "network-state bad";
           return;
         }
@@ -706,7 +739,7 @@
 
     async function connectWallet(){
       if(!hasEthereum()){
-        networkState.textContent = "Wallet não encontrada";
+        networkState.textContent = "Wallet not found";
         networkState.className = "network-state bad";
         return;
       }
@@ -727,9 +760,10 @@
         walletStatus.innerHTML = '<span class="led"></span>Online';
 
         walletValue.textContent = shortAddress(currentAccount);
+        connectedLine.textContent = shortAddress(currentAccount);
         copyWalletBtn.disabled = false;
 
-        connectBtn.textContent = "Carteira conectada";
+        connectBtn.textContent = "Wallet connected";
         connectBtn.disabled = true;
 
         await updateNetworkState();
@@ -739,92 +773,101 @@
           closeWallet();
         }else{
           unlockBtn.disabled = true;
-          accessMini.textContent = "Rede errada";
-          passStatus.textContent = "Bloqueada";
-          unlockTitle.textContent = "Troque para Arc Testnet";
-          unlockText.textContent = "A carteira conectou, mas a rede ainda não é a Arc Testnet.";
-          setHead("Rede");
+          accessMini.textContent = "Wrong network";
+          passStatus.textContent = "Locked";
+          unlockTitle.textContent = "Switch to Arc Testnet";
+          unlockText.textContent = "Wallet connected, but the active network is not Arc Testnet.";
+          setHead("Network");
         }
       }catch(error){
-        networkState.textContent = "Recusado";
+        networkState.textContent = "Rejected";
         networkState.className = "network-state bad";
       }
     }
 
     function setReadyState(){
-      accessMini.textContent = "Pronta";
-      passStatus.textContent = "Bloqueada";
+      accessMini.textContent = "Ready";
+      passStatus.textContent = "Locked";
 
       const ready = backendOnline && buyerConfigured;
 
       unlockBtn.disabled = !ready;
-      unlockBtn.textContent = ready ? "Pagar demo e liberar" : "Backend sem buyer";
+      unlockBtn.textContent = ready ? "Run demo payment" : "Backend not ready";
 
-      unlockTitle.textContent = ready ? "Pronta para pagar" : "Backend incompleto";
+      unlockTitle.textContent = ready ? "Ready to unlock" : "Backend incomplete";
       unlockText.textContent = ready
-        ? "O Render vai executar um pagamento demo real e liberar a API."
-        : "O backend respondeu, mas o buyer ainda não está configurado.";
+        ? "Render will execute a real demo payment and unlock the protected API."
+        : "Backend responded, but the demo buyer is not configured.";
 
-      setHead("Pronto");
+      setHead("Ready");
     }
 
     function setChecking(){
-      app.classList.remove("protected", "paid", "error");
+      app.classList.remove("paid", "error");
       app.classList.add("paying");
 
       unlockBtn.disabled = true;
-      unlockBtn.textContent = "Processando pagamento";
+      unlockBtn.textContent = "Processing payment";
 
-      accessMini.textContent = "Pagando";
-      passStatus.textContent = "Pendente";
+      accessMini.textContent = "Paying";
+      passStatus.textContent = "Pending";
 
-      unlockTitle.textContent = "Pagamento em andamento";
-      unlockText.textContent = "Chamando /pay-premium-demo no Render. O backend vai pagar /premium-data.";
+      unlockTitle.textContent = "Payment in progress";
+      unlockText.textContent = "Calling /pay-premium-demo on Render. The backend demo buyer will pay /premium-data.";
 
-      setHead("Pagando");
+      setHead("Paying");
     }
 
     function setPaid(data){
       paid = true;
 
-      app.classList.remove("paying", "protected", "error");
+      app.classList.remove("paying", "error");
       app.classList.add("paid");
 
       const id = makeReceiptId();
       receiptId.textContent = id;
 
       const result = data && data.result ? data.result : {};
+      const usage = data && data.walletUsage ? data.walletUsage : null;
+
       const formattedAmount = result.formattedAmount || "0.001";
       const tx = result.transaction || "";
+      const remaining = usage && typeof usage.remaining === "number" ? usage.remaining : null;
+      const used = usage && typeof usage.used === "number" ? usage.used : null;
+      const limit = usage && typeof usage.limit === "number" ? usage.limit : demoLimit;
 
-      receiptTitle.textContent = "Recibo da requisição";
-      proofText.textContent = "Resposta liberada";
+      receiptTitle.textContent = "Request receipt";
+      proofText.textContent = "Response unlocked";
       receiptResult.textContent = "200 OK";
       amountLine.textContent = `$${formattedAmount} USDC`;
+      connectedLine.textContent = shortAddress(currentAccount);
+      limitLine.textContent = remaining === null ? `${limit} per wallet` : `${remaining} remaining / ${limit}`;
 
       apiText.textContent = tx
-        ? `Pagamento verificado. A rota /premium-data retornou 200 OK. Transaction: ${tx}`
-        : "Pagamento verificado. A rota /premium-data retornou 200 OK e entregou a resposta premium do NanoGate.";
+        ? `Demo payment via Render completed. /premium-data returned 200 OK. Transaction: ${tx}`
+        : "Demo payment via Render completed. /premium-data returned 200 OK and delivered the premium NanoGate response.";
 
       receiptPill.className = "pill online";
-      receiptPill.innerHTML = '<span class="led"></span>Pago';
+      receiptPill.innerHTML = '<span class="led"></span>Paid';
 
-      passStatus.textContent = "Liberada";
-      accessMini.textContent = "Liberada";
+      passStatus.textContent = "Unlocked";
+      accessMini.textContent = "Unlocked";
 
-      unlockTitle.textContent = "Resposta liberada";
-      unlockText.textContent = "Pagamento demo real concluído. A API premium retornou 200 OK.";
+      unlockTitle.textContent = "Response unlocked";
+      unlockText.textContent = "Real demo payment completed via Render. The premium API returned 200 OK.";
 
-      unlockBtn.textContent = "Resposta premium liberada";
+      unlockBtn.textContent = "Premium response unlocked";
       unlockBtn.disabled = true;
 
       resetBtn.classList.remove("hidden");
 
-      setHead("Pago");
+      setHead("Paid");
 
       addHistory(
-        "Resposta premium liberada",
-        "/pay-premium-demo pagou e /premium-data retornou 200 OK",
+        "Premium response unlocked",
+        remaining === null
+          ? "/pay-premium-demo paid and /premium-data returned 200 OK"
+          : `/pay-premium-demo paid • ${remaining} remaining of ${limit}`,
         "OK"
       );
     }
@@ -832,41 +875,42 @@
     function setApiError(message){
       paid = false;
 
-      app.classList.remove("paying", "paid", "protected");
+      app.classList.remove("paying", "paid");
       app.classList.add("error");
 
-      passStatus.textContent = "Erro";
-      accessMini.textContent = "Erro";
+      passStatus.textContent = "Error";
+      accessMini.textContent = "Error";
 
-      receiptTitle.textContent = "Erro no pagamento demo";
-      proofText.textContent = "Falha";
-      receiptResult.textContent = "Erro";
+      receiptTitle.textContent = "Demo payment error";
+      proofText.textContent = "Failed";
+      receiptResult.textContent = "Error";
       amountLine.textContent = "$0.001 USDC";
+      connectedLine.textContent = currentAccount ? shortAddress(currentAccount) : "Not connected";
 
       receiptPill.className = "pill bad";
-      receiptPill.innerHTML = '<span class="led"></span>Erro';
+      receiptPill.innerHTML = '<span class="led"></span>Error';
 
-      apiText.textContent = message || "Não foi possível concluir o pagamento demo no Render.";
+      apiText.textContent = message || "The demo payment could not be completed on Render.";
 
-      unlockTitle.textContent = "Erro ao pagar";
-      unlockText.textContent = message || "O endpoint /pay-premium-demo não conseguiu liberar a resposta.";
+      unlockTitle.textContent = "Payment failed";
+      unlockText.textContent = message || "The /pay-premium-demo endpoint could not unlock the response.";
 
-      unlockBtn.textContent = "Tentar novamente";
+      unlockBtn.textContent = "Try again";
       unlockBtn.disabled = false;
 
       resetBtn.classList.remove("hidden");
 
-      setHead("Erro");
+      setHead("Error");
 
       addHistory(
-        "Erro no pagamento demo",
-        message || "Falha ao chamar /pay-premium-demo",
-        "Erro",
+        "Demo payment error",
+        message || "Failed to call /pay-premium-demo",
+        "Error",
         "bad"
       );
     }
 
-    async function testProtectedRoute(){
+    async function runDemoPayment(){
       if(!connected || !isArc || paid) return;
 
       setChecking();
@@ -880,7 +924,7 @@
           cache: "no-store",
           body: JSON.stringify({
             wallet: currentAccount,
-            mode: "demo-real-payment"
+            mode: "demo-real-payment-via-render"
           })
         });
 
@@ -894,55 +938,57 @@
         const message =
           data && data.error
             ? data.error
-            : "O pagamento demo não foi concluído.";
+            : "The demo payment was not completed.";
 
         setApiError(message);
       }catch(error){
-        setApiError("Falha de rede ou CORS ao chamar /pay-premium-demo no Render.");
+        setApiError("Network or CORS error while calling /pay-premium-demo on Render.");
       }
     }
 
     function resetSession(){
       paid = false;
 
-      app.classList.remove("paid", "paying", "protected", "error");
+      app.classList.remove("paid", "paying", "error");
 
-      passStatus.textContent = "Bloqueada";
+      passStatus.textContent = "Locked";
 
       receiptPill.className = "pill locked";
       receiptPill.innerHTML = '<span class="led"></span>402';
 
-      receiptTitle.textContent = "Recibo da requisição";
-      proofText.textContent = "Aguardando pagamento";
+      receiptTitle.textContent = "Request receipt";
+      proofText.textContent = "Waiting for payment";
       receiptResult.textContent = "HTTP 402";
       amountLine.textContent = "$0.001 USDC";
-      apiText.textContent = "A rota protegida ainda não foi liberada.";
+      connectedLine.textContent = currentAccount ? shortAddress(currentAccount) : "Not connected";
+      limitLine.textContent = `${demoLimit} per wallet`;
+      apiText.textContent = "The protected route has not been unlocked yet.";
 
       if(connected && isArc){
         const ready = backendOnline && buyerConfigured;
 
         unlockBtn.disabled = !ready;
-        unlockTitle.textContent = ready ? "Pronta para pagar" : "Backend incompleto";
+        unlockTitle.textContent = ready ? "Ready to unlock" : "Backend incomplete";
         unlockText.textContent = ready
-          ? "O Render vai executar um pagamento demo real e liberar a API."
-          : "O backend respondeu, mas o buyer ainda não está configurado.";
-        unlockBtn.textContent = ready ? "Pagar demo e liberar" : "Backend sem buyer";
+          ? "Render will execute a real demo payment and unlock the protected API."
+          : "Backend responded, but the demo buyer is not configured.";
+        unlockBtn.textContent = ready ? "Run demo payment" : "Backend not ready";
 
-        setHead("Pronto");
-        accessMini.textContent = "Pronta";
+        setHead("Ready");
+        accessMini.textContent = "Ready";
       }else if(connected && !isArc){
         unlockBtn.disabled = true;
-        unlockTitle.textContent = "Troque para Arc Testnet";
-        unlockText.textContent = "A carteira conectou, mas a rede ainda não é a Arc Testnet.";
-        setHead("Rede");
-        accessMini.textContent = "Bloqueada";
+        unlockTitle.textContent = "Switch to Arc Testnet";
+        unlockText.textContent = "Wallet connected, but the active network is not Arc Testnet.";
+        setHead("Network");
+        accessMini.textContent = "Locked";
       }else{
         app.classList.remove("connected");
         unlockBtn.disabled = true;
-        unlockTitle.textContent = "Resposta bloqueada";
-        unlockText.textContent = "Conecte sua carteira antes de executar o pagamento demo.";
+        unlockTitle.textContent = "Response locked";
+        unlockText.textContent = "Connect your wallet before running the Render demo payment.";
         setHead("Testnet");
-        accessMini.textContent = "Bloqueada";
+        accessMini.textContent = "Locked";
       }
 
       resetBtn.classList.add("hidden");
@@ -960,18 +1006,18 @@
       button.addEventListener("click", connectWallet);
     });
 
-    unlockBtn.addEventListener("click", testProtectedRoute);
+    unlockBtn.addEventListener("click", runDemoPayment);
     resetBtn.addEventListener("click", resetSession);
 
     copyWalletBtn.addEventListener("click", async () => {
       try{
         await navigator.clipboard.writeText(currentAccount);
-        copyWalletBtn.textContent = "Copiado";
+        copyWalletBtn.textContent = "Copied";
         setTimeout(() => {
-          copyWalletBtn.textContent = "Copiar";
+          copyWalletBtn.textContent = "Copy";
         }, 900);
       }catch(error){
-        copyWalletBtn.textContent = "Copiar";
+        copyWalletBtn.textContent = "Copy";
       }
     });
 
@@ -982,10 +1028,11 @@
         if(!currentAccount){
           connected = false;
           currentAccount = "";
-          walletValue.textContent = "Não conectada";
+          walletValue.textContent = "Not connected";
+          connectedLine.textContent = "Not connected";
           copyWalletBtn.disabled = true;
           connectBtn.disabled = false;
-          connectBtn.textContent = "Conectar carteira";
+          connectBtn.textContent = "Connect wallet";
           walletStatus.className = "pill locked";
           walletStatus.innerHTML = '<span class="led"></span>Offline';
           resetSession();
@@ -994,6 +1041,7 @@
 
         connected = true;
         walletValue.textContent = shortAddress(currentAccount);
+        connectedLine.textContent = shortAddress(currentAccount);
       });
 
       window.ethereum.on?.("chainChanged", async () => {
@@ -1003,10 +1051,10 @@
           setReadyState();
         }else if(connected){
           unlockBtn.disabled = true;
-          accessMini.textContent = "Rede errada";
-          unlockTitle.textContent = "Troque para Arc Testnet";
-          unlockText.textContent = "A carteira conectou, mas a rede ainda não é a Arc Testnet.";
-          setHead("Rede");
+          accessMini.textContent = "Wrong network";
+          unlockTitle.textContent = "Switch to Arc Testnet";
+          unlockText.textContent = "Wallet connected, but the active network is not Arc Testnet.";
+          setHead("Network");
         }
       });
     }
