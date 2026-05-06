@@ -15,6 +15,7 @@
     html,body{width:100%;height:100%;overflow:hidden;background:#000304;color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif}
     body{position:fixed;inset:0}
     button{border:none;outline:none;font-family:inherit;cursor:pointer}
+
     .app{
       position:fixed;inset:0;overflow:hidden;
       background:
@@ -34,6 +35,7 @@
       content:"";position:absolute;left:0;right:0;top:calc(var(--headerH) + env(safe-area-inset-top));height:1px;pointer-events:none;
       background:linear-gradient(90deg,transparent,rgba(237,209,138,.42),rgba(88,214,255,.16),transparent);z-index:22;opacity:.72
     }
+
     .fixed-head{
       position:fixed;z-index:20;left:0;right:0;top:0;height:calc(var(--headerH) + env(safe-area-inset-top));
       padding:calc(9px + env(safe-area-inset-top)) 14px 8px;
@@ -53,6 +55,7 @@
     .brand-title{font-size:19px;line-height:1;font-weight:950;letter-spacing:-.065em;color:#f8fbff;white-space:nowrap}
     .brand-title span{color:var(--blue);text-shadow:0 0 14px rgba(88,214,255,.20)}
     .brand-sub{margin-top:5px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(237,209,138,.72);white-space:nowrap}
+
     .head-chip{
       flex:0 0 auto;height:31px;min-width:82px;padding:0 12px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;
       border:1px solid rgba(88,214,255,.12);background:linear-gradient(180deg,rgba(9,29,43,.72),rgba(3,10,17,.94));
@@ -63,14 +66,19 @@
     .app.paid .head-chip{color:#eafff0;border-color:rgba(72,232,154,.18);background:rgba(72,232,154,.065)}
     .app.paid .head-dot{background:var(--green);box-shadow:0 0 13px rgba(72,232,154,.82)}
     .app.protected .head-chip{color:#d7ecff;border-color:rgba(88,214,255,.18);background:rgba(88,214,255,.055)}
+    .app.error .head-chip{color:#ffdada;border-color:rgba(255,118,118,.24);background:rgba(255,118,118,.07)}
+    .app.error .head-dot{background:var(--red);box-shadow:0 0 13px rgba(255,118,118,.8)}
+
     .head-strip{margin-top:7px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
     .mini-stat{
       height:24px;padding:0 8px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(0,0,0,.25);
       border:1px solid rgba(255,255,255,.042);color:rgba(143,164,189,.78);font-size:7.8px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;overflow:hidden
     }
     .mini-stat strong{color:#eef6ff;font-weight:950;letter-spacing:.06em}.mini-stat.gold strong{color:var(--gold2)}
+
     .scroll{position:absolute;left:0;right:0;top:calc(var(--headerH) + env(safe-area-inset-top));bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:12px 12px calc(22px + env(safe-area-inset-bottom))}
     .scroll::-webkit-scrollbar{width:0;height:0}.section{width:100%;max-width:760px;margin:0 auto}
+
     .hero{padding:11px 3px 11px}
     .kicker{
       display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 11px;border-radius:999px;border:1px solid rgba(88,214,255,.12);
@@ -84,16 +92,20 @@
       margin-top:13px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 12px;border-radius:19px;background:rgba(0,0,0,.24);
       border:1px solid rgba(201,168,91,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.026)
     }
+
     .label{font-size:8.3px;letter-spacing:.16em;text-transform:uppercase;color:rgba(143,164,189,.64);margin-bottom:4px;font-weight:900}
     .value{font-size:12.5px;font-weight:900;color:#eff7ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.value.gold{color:var(--gold2)}
     .rail{margin-top:8px;display:grid;grid-template-columns:1fr;gap:10px}
+
     .panel{
       border:1px solid rgba(255,255,255,.052);background:radial-gradient(circle at 12% 0%,rgba(88,214,255,.044),transparent 34%),linear-gradient(180deg,rgba(7,19,31,.90),rgba(2,8,13,.985));
       border-radius:23px;box-shadow:0 14px 30px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.030);overflow:hidden
     }
     .panel.thin{border-color:rgba(201,168,91,.12)}
     .panel-head{padding:12px 13px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.036)}
-    .panel-title{font-size:14.5px;font-weight:950;letter-spacing:-.04em;color:#f5f9ff}.panel-sub{margin-top:4px;font-size:10.8px;line-height:1.35;color:var(--soft)}
+    .panel-title{font-size:14.5px;font-weight:950;letter-spacing:-.04em;color:#f5f9ff}
+    .panel-sub{margin-top:4px;font-size:10.8px;line-height:1.35;color:var(--soft)}
+
     .pill{
       flex:0 0 auto;height:26px;padding:0 10px;border-radius:999px;display:flex;align-items:center;gap:7px;font-size:8.2px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;
       color:var(--soft);background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.052)
@@ -103,20 +115,26 @@
     .pill.online .led{background:var(--green);box-shadow:0 0 11px rgba(72,232,154,.76)}
     .pill.locked{color:#d7ecff;border-color:rgba(88,214,255,.12);background:rgba(88,214,255,.040)}
     .pill.locked .led{background:var(--blue);box-shadow:0 0 10px rgba(88,214,255,.60)}
+    .pill.bad{color:#ffdada;border-color:rgba(255,118,118,.22);background:rgba(255,118,118,.055)}
+    .pill.bad .led{background:var(--red);box-shadow:0 0 10px rgba(255,118,118,.70)}
+
     .wallet-body{padding:11px 13px 13px}
     .wallet-strip{min-height:51px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px;border-radius:17px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.044)}
     .wallet-main{min-width:0}.wallet-value{font-size:13.5px;font-weight:950;color:#f1f8ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .copy{flex:0 0 auto;height:30px;padding:0 12px;border-radius:999px;border:1px solid rgba(201,168,91,.14);color:var(--gold2);background:rgba(201,168,91,.048);font-size:8.8px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
     .connect-row{margin-top:9px;display:grid;grid-template-columns:1fr;gap:9px}
+
     .btn{height:44px;border-radius:17px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:10.5px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;transition:transform .16s ease,opacity .16s ease,filter .16s ease}
     .btn:active{transform:scale(.985)}.btn:disabled{opacity:.48;filter:saturate(.65);cursor:not-allowed}
     .btn-blue{color:#eefdff;border:1px solid rgba(88,214,255,.13);background:linear-gradient(180deg,rgba(88,214,255,.125),rgba(19,76,111,.10));box-shadow:inset 0 1px 0 rgba(255,255,255,.048),0 9px 18px rgba(0,0,0,.22)}
     .btn-gold{color:#060b11;background:linear-gradient(180deg,#efd993 0%,#c9a85b 50%,#8f6b2b 100%);box-shadow:0 10px 24px rgba(201,168,91,.14),inset 0 1px 0 rgba(255,255,255,.44);position:relative;overflow:hidden}
     .btn-gold::before{content:"";position:absolute;inset:1px;border-radius:16px;border:1px solid rgba(255,255,255,.14);pointer-events:none;opacity:.50}
     .btn-gold::after{content:"";position:absolute;top:0;bottom:0;width:80px;left:-100px;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);opacity:0}
-    .app.connected .btn-gold::after{animation:goldSweep 3.8s ease-in-out infinite;opacity:.72}.app.paid .btn-gold::after{animation:none;opacity:0}
+    .app.connected .btn-gold::after{animation:goldSweep 3.8s ease-in-out infinite;opacity:.72}
+    .app.paid .btn-gold::after,.app.error .btn-gold::after{animation:none;opacity:0}
     @keyframes goldSweep{0%,56%{left:-100px}78%{left:120%}100%{left:120%}}
     .btn-ghost{color:var(--soft);border:1px solid rgba(255,255,255,.050);background:rgba(255,255,255,.024)}
+
     .pass{padding:13px;position:relative;overflow:hidden}
     .pass::before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-108px;top:-90px;border:1px solid rgba(201,168,91,.10);box-shadow:inset 0 0 50px rgba(88,214,255,.030);pointer-events:none}
     .pass-main{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.044)}
@@ -126,8 +144,11 @@
     .slots{position:relative;z-index:2;margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
     .slot{min-height:54px;padding:9px 10px;border-radius:15px;border:1px solid rgba(255,255,255,.044);background:rgba(0,0,0,.25)}
     .slot strong{display:block;font-size:11.8px;color:#f2f8ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
     .state-line{margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.046);background:rgba(0,0,0,.255)}
-    .state-copy{min-width:0}.state-copy strong{display:block;font-size:12.8px;margin-bottom:4px;color:#f4f9ff}.state-copy span{display:block;font-size:11.3px;color:var(--soft);line-height:1.35}
+    .state-copy{min-width:0}.state-copy strong{display:block;font-size:12.8px;margin-bottom:4px;color:#f4f9ff}
+    .state-copy span{display:block;font-size:11.3px;color:var(--soft);line-height:1.35}
+
     .gateway-core{flex:0 0 auto;width:44px;height:44px;position:relative;border-radius:50%;display:grid;place-items:center;isolation:isolate}
     .core-halo{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(88,214,255,.16),transparent 68%);filter:blur(1px);opacity:.48;transform:scale(.98)}
     .core-ring{position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(88,214,255,.16);opacity:.66}
@@ -135,19 +156,27 @@
     .core-ring.two{inset:7px;border-color:rgba(201,168,91,.075);transform:rotate(40deg);opacity:.48}
     .core-orb{width:30px;height:30px;border-radius:50%;position:relative;z-index:2;border:1px solid rgba(255,255,255,.07);background:radial-gradient(circle at 35% 24%,rgba(210,250,255,.70) 0%,rgba(88,214,255,.26) 28%,rgba(6,27,41,.82) 62%,rgba(0,0,0,.90) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset -8px -10px 16px rgba(0,0,0,.42),0 0 16px rgba(88,214,255,.15);opacity:.68}
     .core-orb::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;top:6px;left:7px;background:rgba(255,255,255,.30);filter:blur(.2px)}
-    .app.connected .core-halo{opacity:.74;animation:softBreathe 2.6s ease-in-out infinite}.app.connected .core-orb{opacity:.88;box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset -8px -10px 16px rgba(0,0,0,.38),0 0 22px rgba(88,214,255,.18)}
-    .app.paying .core-ring{border-color:rgba(237,209,138,.28);animation:coreSpin 1s linear infinite;opacity:1}.app.paying .core-ring.two{animation:coreSpinReverse 1.35s linear infinite;border-color:rgba(88,214,255,.20);opacity:.84}
+    .app.connected .core-halo{opacity:.74;animation:softBreathe 2.6s ease-in-out infinite}
+    .app.connected .core-orb{opacity:.88;box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset -8px -10px 16px rgba(0,0,0,.38),0 0 22px rgba(88,214,255,.18)}
+    .app.paying .core-ring{border-color:rgba(237,209,138,.28);animation:coreSpin 1s linear infinite;opacity:1}
+    .app.paying .core-ring.two{animation:coreSpinReverse 1.35s linear infinite;border-color:rgba(88,214,255,.20);opacity:.84}
     .app.paying .core-orb{background:radial-gradient(circle at 35% 24%,#fff4c8 0%,#edd18a 29%,#7e6228 62%,rgba(0,0,0,.90) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset -8px -10px 16px rgba(0,0,0,.38),0 0 24px rgba(201,168,91,.25);animation:corePulse .8s ease-in-out infinite;opacity:1}
     .app.paid .core-halo{background:radial-gradient(circle,rgba(201,168,91,.25),transparent 70%);opacity:.94;filter:blur(1.5px)}
-    .app.paid .core-ring{border-color:rgba(201,168,91,.30);opacity:.92;animation:none}.app.paid .core-ring::before{background:var(--green);box-shadow:0 0 10px rgba(72,232,154,.88)}
+    .app.paid .core-ring{border-color:rgba(201,168,91,.30);opacity:.92;animation:none}
+    .app.paid .core-ring::before{background:var(--green);box-shadow:0 0 10px rgba(72,232,154,.88)}
     .app.paid .core-ring.two{border-color:rgba(237,209,138,.16);opacity:.70;animation:none}
     .app.paid .core-orb{opacity:1;background:radial-gradient(circle at 34% 24%,#fff4c8 0%,#edd18a 28%,#bd9546 52%,#47300f 82%,#080604 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset -9px -11px 18px rgba(0,0,0,.36),0 0 22px rgba(201,168,91,.27)}
+    .app.error .core-ring::before{background:var(--red);box-shadow:0 0 10px rgba(255,118,118,.8)}
     @keyframes softBreathe{0%,100%{transform:scale(.94);opacity:.52}50%{transform:scale(1.08);opacity:.82}}
-    @keyframes coreSpin{to{transform:rotate(360deg)}}@keyframes coreSpinReverse{to{transform:rotate(-320deg)}}@keyframes corePulse{0%,100%{transform:scale(.96)}50%{transform:scale(1.06)}}
+    @keyframes coreSpin{to{transform:rotate(360deg)}}
+    @keyframes coreSpinReverse{to{transform:rotate(-320deg)}}
+    @keyframes corePulse{0%,100%{transform:scale(.96)}50%{transform:scale(1.06)}}
+
     .action-row{margin-top:10px;display:grid;grid-template-columns:1fr;gap:8px}
     .receipt{display:none;margin-top:10px;border-top:1px solid rgba(201,168,91,.11);padding:13px;background:linear-gradient(180deg,rgba(201,168,91,.024),rgba(0,0,0,0))}
-    .app.paid .receipt,.app.protected .receipt{display:block;animation:rise .28s ease both}
+    .app.paid .receipt,.app.protected .receipt,.app.error .receipt{display:block;animation:rise .28s ease both}
     @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
     .receipt-card{border-radius:21px;border:1px solid rgba(201,168,91,.115);background:radial-gradient(circle at 100% 0%,rgba(201,168,91,.065),transparent 34%),radial-gradient(circle at 0% 100%,rgba(88,214,255,.032),transparent 35%),rgba(0,0,0,.20);padding:13px;position:relative;overflow:hidden}
     .receipt-card::before{content:"";position:absolute;left:14px;right:14px;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(237,209,138,.58),transparent);opacity:.80}
     .receipt-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
@@ -155,19 +184,24 @@
     .receipt-id{margin-top:4px;font-size:9px;color:var(--gold2);font-weight:950;letter-spacing:.13em;text-transform:uppercase}
     .proof-mark{margin-top:8px;height:24px;width:max-content;padding:0 9px;border-radius:999px;display:flex;align-items:center;gap:6px;border:1px solid rgba(88,214,255,.11);background:rgba(88,214,255,.035);color:rgba(220,240,255,.82);font-size:8px;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
     .proof-mark span{width:6px;height:6px;border-radius:50%;background:var(--gold2);box-shadow:0 0 9px rgba(201,168,91,.70)}
-    .lines{display:grid;gap:8px}.line{display:flex;justify-content:space-between;gap:14px;font-size:12px}.line span{color:var(--soft)}.line strong{color:#f3f8ff;text-align:right;font-weight:900}.line strong.gold{color:var(--gold2)}
+    .lines{display:grid;gap:8px}.line{display:flex;justify-content:space-between;gap:14px;font-size:12px}
+    .line span{color:var(--soft)}.line strong{color:#f3f8ff;text-align:right;font-weight:900}.line strong.gold{color:var(--gold2)}
     .api-box{margin-top:12px;padding:12px;border-radius:18px;border:1px solid rgba(88,214,255,.105);background:rgba(88,214,255,.032)}
     .api-box p{margin-top:7px;font-size:12px;line-height:1.45;color:rgba(235,246,255,.78)}
+
     .history{padding:12px 13px 13px;display:grid;gap:8px}
     .history-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px;border-radius:17px;border:1px solid rgba(255,255,255,.044);background:rgba(0,0,0,.24)}
     .history-title{font-size:12px;font-weight:950;color:#f1f7ff}.history-sub{margin-top:3px;font-size:10px;color:var(--soft)}
     .tiny{flex:0 0 auto;padding:6px 8px;border-radius:999px;font-size:8.5px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;color:#dfffea;background:rgba(72,232,154,.070);border:1px solid rgba(72,232,154,.15)}
     .tiny.idle{color:var(--soft);background:rgba(255,255,255,.026);border-color:rgba(255,255,255,.050);opacity:.62}
+    .tiny.bad{color:#ffdada;background:rgba(255,118,118,.060);border-color:rgba(255,118,118,.16)}
+
     .proof-row{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .proof{min-height:56px;padding:10px;border-radius:16px;border:1px solid rgba(255,255,255,.044);background:rgba(0,0,0,.21)}
     .proof strong{display:block;margin-top:5px;font-size:12px;color:#f3f8ff}
     .foot{padding:14px 8px 3px;text-align:center;font-size:10px;line-height:1.45;color:rgba(143,164,189,.43)}
     .hidden{display:none!important}
+
     .wallet-overlay{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.56);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .22s ease}
     .wallet-overlay.open{opacity:1;pointer-events:auto}
     .wallet-sheet{position:absolute;left:10px;right:10px;bottom:10px;max-width:430px;margin:0 auto;border-radius:28px;border:1px solid rgba(201,168,91,.14);background:radial-gradient(circle at 18% 0%,rgba(88,214,255,.08),transparent 38%),linear-gradient(180deg,rgba(7,19,31,.98),rgba(2,8,13,.99));box-shadow:0 28px 70px rgba(0,0,0,.70),inset 0 1px 0 rgba(255,255,255,.045);transform:translateY(112%);transition:transform .28s cubic-bezier(.2,.8,.2,1);overflow:hidden}
@@ -184,6 +218,7 @@
     .network-state{font-size:9px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}.network-state.ok{color:var(--green)}.network-state.bad{color:var(--red)}
     .switch-btn{margin-top:9px;width:100%;height:38px;border-radius:14px;color:#07101a;background:linear-gradient(180deg,#efd993 0%,#c9a85b 50%,#8f6b2b 100%);font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;display:none}
     .switch-btn.show{display:flex;align-items:center;justify-content:center}
+
     @media (min-width:760px){
       :root{--headerH:90px}.fixed-head{padding-left:26px;padding-right:26px}.scroll{padding-left:26px;padding-right:26px}
       h1{font-size:50px;max-width:700px}.lead{font-size:14.5px}.rail{grid-template-columns:1fr 1fr;align-items:start}.panel.wide{grid-column:1/-1}
@@ -220,7 +255,7 @@
           <div class="kicker">Resposta premium por microtaxa</div>
           <h1>Libere <span>1 resposta premium</span>.</h1>
           <p class="lead">
-            Pague uma microtaxa e desbloqueie uma resposta protegida da API NanoGate. Nesta etapa, a página já consulta o backend real no Render.
+            Pague uma microtaxa e desbloqueie uma resposta protegida da API NanoGate. Nesta etapa, o Render faz um pagamento demo real.
           </p>
           <div class="route-line">
             <div>
@@ -239,7 +274,7 @@
             <div class="panel-head">
               <div>
                 <div class="panel-title">Sessão da carteira</div>
-                <div class="panel-sub">Conecte uma carteira e prepare a compra da resposta premium.</div>
+                <div class="panel-sub">Conecte uma carteira para preparar a sessão na Arc Testnet.</div>
               </div>
               <div class="pill locked" id="walletStatus"><span class="led"></span>Offline</div>
             </div>
@@ -281,7 +316,7 @@
               </div>
 
               <p class="pass-desc">
-                Uma chamada protegida da API. Sem pagamento, o backend real deve responder 402.
+                Uma chamada protegida da API. O Render faz o pagamento demo e libera a resposta 200 OK.
               </p>
 
               <div class="slots">
@@ -302,7 +337,7 @@
               <div class="state-line">
                 <div class="state-copy">
                   <strong id="unlockTitle">Resposta bloqueada</strong>
-                  <span id="unlockText">Conecte sua carteira e teste a rota protegida real do Render.</span>
+                  <span id="unlockText">Conecte sua carteira e depois execute o pagamento demo real pelo Render.</span>
                 </div>
 
                 <div class="gateway-core" aria-hidden="true">
@@ -314,7 +349,7 @@
               </div>
 
               <div class="action-row">
-                <button class="btn btn-gold" id="unlockBtn" disabled>Testar API protegida</button>
+                <button class="btn btn-gold" id="unlockBtn" disabled>Pagar demo e liberar</button>
                 <button class="btn btn-ghost hidden" id="resetBtn">Reiniciar sessão</button>
               </div>
             </div>
@@ -323,9 +358,9 @@
               <div class="receipt-card">
                 <div class="receipt-top">
                   <div>
-                    <div class="receipt-title" id="receiptTitle">Prova da API protegida</div>
+                    <div class="receipt-title" id="receiptTitle">Recibo da requisição</div>
                     <div class="receipt-id" id="receiptId">NG-0000</div>
-                    <div class="proof-mark"><span></span><strong id="proofText">Proteção confirmada</strong></div>
+                    <div class="proof-mark"><span></span><strong id="proofText">Aguardando pagamento</strong></div>
                   </div>
                   <div class="pill locked" id="receiptPill"><span class="led"></span>402</div>
                 </div>
@@ -337,7 +372,7 @@
                   </div>
                   <div class="line">
                     <span>Valor</span>
-                    <strong class="gold">$0.001 USDC</strong>
+                    <strong class="gold" id="amountLine">$0.001 USDC</strong>
                   </div>
                   <div class="line">
                     <span>Recebedor</span>
@@ -352,7 +387,7 @@
                 <div class="api-box">
                   <div class="label">Resposta do backend</div>
                   <p id="apiText">
-                    A rota protegida respondeu 402 Payment Required. Isso confirma que o backend real está protegendo a API.
+                    A rota protegida ainda não foi liberada.
                   </p>
                 </div>
               </div>
@@ -363,7 +398,7 @@
             <div class="panel-head">
               <div>
                 <div class="panel-title">Histórico da sessão</div>
-                <div class="panel-sub">Agora esta área já recebe eventos do backend real.</div>
+                <div class="panel-sub">Eventos do backend real aparecem aqui.</div>
               </div>
             </div>
 
@@ -380,7 +415,7 @@
         </section>
 
         <div class="foot">
-          Nano8A: Vercel conectada ao backend real do Render. Pagamento real entra na próxima fase.
+          Nano8B: pagamento demo real pelo Render. A wallet do usuário paga direto só na próxima arquitetura.
         </div>
       </div>
     </section>
@@ -394,7 +429,7 @@
         <div class="sheet-kicker">Carteira</div>
         <div class="sheet-title">Conectar na NanoGate</div>
         <p class="sheet-text">
-          Escolha a carteira instalada no navegador. Depois vamos usar essa sessão para validar a rede Arc Testnet.
+          Escolha a carteira instalada no navegador. A sessão será usada para validar a rede Arc Testnet.
         </p>
 
         <div class="wallet-options">
@@ -486,6 +521,7 @@
     const receiptPill = document.getElementById("receiptPill");
     const proofText = document.getElementById("proofText");
     const receiptResult = document.getElementById("receiptResult");
+    const amountLine = document.getElementById("amountLine");
     const apiText = document.getElementById("apiText");
 
     const walletOverlay = document.getElementById("walletOverlay");
@@ -498,6 +534,7 @@
     let currentAccount = "";
     let isArc = false;
     let backendOnline = false;
+    let buyerConfigured = false;
 
     function shortAddress(address){
       if(!address || address.length < 12) return address;
@@ -517,14 +554,16 @@
       return typeof window !== "undefined" && Boolean(window.ethereum);
     }
 
-    function addHistory(title, sub, tag, idle = false){
+    function addHistory(title, sub, tag, mode = "ok"){
+      const cls = mode === "bad" ? "tiny bad" : mode === "idle" ? "tiny idle" : "tiny";
+
       historyList.innerHTML = `
         <div class="history-item">
           <div>
             <div class="history-title">${title}</div>
             <div class="history-sub">${sub}</div>
           </div>
-          <div class="tiny ${idle ? "idle" : ""}">${tag}</div>
+          <div class="${cls}">${tag}</div>
         </div>
       ` + historyList.innerHTML;
     }
@@ -546,22 +585,33 @@
         const data = await response.json();
 
         backendOnline = Boolean(data.ok);
+        buyerConfigured = Boolean(data.buyerConfigured);
 
-        backendTop.textContent = "Online";
-        gatewayStatus.textContent = "Online";
+        backendTop.textContent = buyerConfigured ? "Pronto" : "Sem buyer";
+        gatewayStatus.textContent = buyerConfigured ? "Pronto" : "Config";
         apiStateTop.textContent = "Protegida";
 
         historyList.innerHTML = `
           <div class="history-item">
             <div>
               <div class="history-title">Backend online</div>
-              <div class="history-sub">Render respondeu /health com sucesso</div>
+              <div class="history-sub">Render respondeu /health com buyerConfigured: ${buyerConfigured}</div>
             </div>
             <div class="tiny">OK</div>
           </div>
         `;
+
+        if(!buyerConfigured){
+          addHistory(
+            "Buyer não configurado",
+            "BUYER_PRIVATE_KEY ainda não está ativa no Render",
+            "Config",
+            "bad"
+          );
+        }
       }catch(error){
         backendOnline = false;
+        buyerConfigured = false;
 
         backendTop.textContent = "Erro";
         gatewayStatus.textContent = "Offline";
@@ -573,7 +623,7 @@
               <div class="history-title">Backend não respondeu</div>
               <div class="history-sub">Confira CORS, Render ou URL do backend</div>
             </div>
-            <div class="tiny idle">Erro</div>
+            <div class="tiny bad">Erro</div>
           </div>
         `;
       }
@@ -705,83 +755,56 @@
       accessMini.textContent = "Pronta";
       passStatus.textContent = "Bloqueada";
 
-      unlockBtn.disabled = !backendOnline;
-      unlockBtn.textContent = backendOnline ? "Testar API protegida" : "Backend offline";
+      const ready = backendOnline && buyerConfigured;
 
-      unlockTitle.textContent = "Pronta para testar";
-      unlockText.textContent = backendOnline
-        ? "A página já pode consultar a rota protegida real do Render."
-        : "O backend ainda não respondeu. Verifique o Render.";
+      unlockBtn.disabled = !ready;
+      unlockBtn.textContent = ready ? "Pagar demo e liberar" : "Backend sem buyer";
+
+      unlockTitle.textContent = ready ? "Pronta para pagar" : "Backend incompleto";
+      unlockText.textContent = ready
+        ? "O Render vai executar um pagamento demo real e liberar a API."
+        : "O backend respondeu, mas o buyer ainda não está configurado.";
 
       setHead("Pronto");
     }
 
     function setChecking(){
-      app.classList.remove("protected", "paid");
+      app.classList.remove("protected", "paid", "error");
       app.classList.add("paying");
 
       unlockBtn.disabled = true;
-      unlockBtn.textContent = "Consultando backend";
+      unlockBtn.textContent = "Processando pagamento";
 
-      accessMini.textContent = "Checando";
-      passStatus.textContent = "Checando";
+      accessMini.textContent = "Pagando";
+      passStatus.textContent = "Pendente";
 
-      unlockTitle.textContent = "Consultando API";
-      unlockText.textContent = "Chamando /premium-data no Render sem pagamento.";
+      unlockTitle.textContent = "Pagamento em andamento";
+      unlockText.textContent = "Chamando /pay-premium-demo no Render. O backend vai pagar /premium-data.";
 
-      setHead("API");
-    }
-
-    function setProtected402(){
-      paid = false;
-
-      app.classList.remove("paying", "paid");
-      app.classList.add("protected");
-
-      const id = makeReceiptId();
-      receiptId.textContent = id;
-
-      receiptTitle.textContent = "Prova da API protegida";
-      proofText.textContent = "Proteção confirmada";
-      receiptResult.textContent = "HTTP 402";
-      apiText.textContent = "O backend real respondeu 402 Payment Required. Isso confirma que /premium-data está protegida por pagamento.";
-
-      receiptPill.className = "pill locked";
-      receiptPill.innerHTML = '<span class="led"></span>402';
-
-      passStatus.textContent = "Protegida";
-      accessMini.textContent = "402 ativo";
-
-      unlockTitle.textContent = "API protegida";
-      unlockText.textContent = "O Render respondeu 402 como esperado. O pagamento real entra na próxima fase.";
-
-      unlockBtn.textContent = "Proteção confirmada";
-      unlockBtn.disabled = true;
-
-      resetBtn.classList.remove("hidden");
-
-      setHead("402");
-
-      addHistory(
-        "API protegida confirmada",
-        "/premium-data respondeu 402 Payment Required",
-        "402"
-      );
+      setHead("Pagando");
     }
 
     function setPaid(data){
       paid = true;
 
-      app.classList.remove("paying", "protected");
+      app.classList.remove("paying", "protected", "error");
       app.classList.add("paid");
 
       const id = makeReceiptId();
       receiptId.textContent = id;
 
+      const result = data && data.result ? data.result : {};
+      const formattedAmount = result.formattedAmount || "0.001";
+      const tx = result.transaction || "";
+
       receiptTitle.textContent = "Recibo da requisição";
       proofText.textContent = "Resposta liberada";
       receiptResult.textContent = "200 OK";
-      apiText.textContent = "Pagamento verificado. A rota /premium-data retornou 200 OK e entregou a resposta premium do NanoGate.";
+      amountLine.textContent = `$${formattedAmount} USDC`;
+
+      apiText.textContent = tx
+        ? `Pagamento verificado. A rota /premium-data retornou 200 OK. Transaction: ${tx}`
+        : "Pagamento verificado. A rota /premium-data retornou 200 OK e entregou a resposta premium do NanoGate.";
 
       receiptPill.className = "pill online";
       receiptPill.innerHTML = '<span class="led"></span>Pago';
@@ -790,7 +813,7 @@
       accessMini.textContent = "Liberada";
 
       unlockTitle.textContent = "Resposta liberada";
-      unlockText.textContent = "Pagamento verificado. A API premium retornou 200 OK.";
+      unlockText.textContent = "Pagamento demo real concluído. A API premium retornou 200 OK.";
 
       unlockBtn.textContent = "Resposta premium liberada";
       unlockBtn.disabled = true;
@@ -801,30 +824,45 @@
 
       addHistory(
         "Resposta premium liberada",
-        "/premium-data retornou 200 OK",
+        "/pay-premium-demo pagou e /premium-data retornou 200 OK",
         "OK"
       );
     }
 
     function setApiError(message){
-      app.classList.remove("paying");
+      paid = false;
+
+      app.classList.remove("paying", "paid", "protected");
+      app.classList.add("error");
 
       passStatus.textContent = "Erro";
       accessMini.textContent = "Erro";
 
-      unlockTitle.textContent = "Erro ao consultar";
-      unlockText.textContent = message || "Não foi possível consultar o backend.";
+      receiptTitle.textContent = "Erro no pagamento demo";
+      proofText.textContent = "Falha";
+      receiptResult.textContent = "Erro";
+      amountLine.textContent = "$0.001 USDC";
+
+      receiptPill.className = "pill bad";
+      receiptPill.innerHTML = '<span class="led"></span>Erro';
+
+      apiText.textContent = message || "Não foi possível concluir o pagamento demo no Render.";
+
+      unlockTitle.textContent = "Erro ao pagar";
+      unlockText.textContent = message || "O endpoint /pay-premium-demo não conseguiu liberar a resposta.";
 
       unlockBtn.textContent = "Tentar novamente";
       unlockBtn.disabled = false;
 
+      resetBtn.classList.remove("hidden");
+
       setHead("Erro");
 
       addHistory(
-        "Erro na consulta",
-        message || "Falha ao chamar o backend",
+        "Erro no pagamento demo",
+        message || "Falha ao chamar /pay-premium-demo",
         "Erro",
-        true
+        "bad"
       );
     }
 
@@ -834,43 +872,62 @@
       setChecking();
 
       try{
-        const response = await fetch(`${API_BASE}/premium-data`, {
-          method: "GET",
-          cache: "no-store"
+        const response = await fetch(`${API_BASE}/pay-premium-demo`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          cache: "no-store",
+          body: JSON.stringify({
+            wallet: currentAccount,
+            mode: "demo-real-payment"
+          })
         });
 
-        if(response.status === 402){
-          setProtected402();
-          return;
-        }
+        const data = await response.json().catch(() => null);
 
-        if(response.ok){
-          const data = await response.json().catch(() => null);
+        if(response.ok && data && data.ok){
           setPaid(data);
           return;
         }
 
-        setApiError("Backend respondeu status " + response.status + ".");
+        const message =
+          data && data.error
+            ? data.error
+            : "O pagamento demo não foi concluído.";
+
+        setApiError(message);
       }catch(error){
-        setApiError("Falha de rede ou CORS ao consultar o Render.");
+        setApiError("Falha de rede ou CORS ao chamar /pay-premium-demo no Render.");
       }
     }
 
     function resetSession(){
       paid = false;
 
-      app.classList.remove("paid", "paying", "protected");
+      app.classList.remove("paid", "paying", "protected", "error");
 
       passStatus.textContent = "Bloqueada";
 
       receiptPill.className = "pill locked";
       receiptPill.innerHTML = '<span class="led"></span>402';
 
+      receiptTitle.textContent = "Recibo da requisição";
+      proofText.textContent = "Aguardando pagamento";
+      receiptResult.textContent = "HTTP 402";
+      amountLine.textContent = "$0.001 USDC";
+      apiText.textContent = "A rota protegida ainda não foi liberada.";
+
       if(connected && isArc){
-        unlockBtn.disabled = !backendOnline;
-        unlockTitle.textContent = "Pronta para testar";
-        unlockText.textContent = "A página já pode consultar a rota protegida real do Render.";
-        unlockBtn.textContent = backendOnline ? "Testar API protegida" : "Backend offline";
+        const ready = backendOnline && buyerConfigured;
+
+        unlockBtn.disabled = !ready;
+        unlockTitle.textContent = ready ? "Pronta para pagar" : "Backend incompleto";
+        unlockText.textContent = ready
+          ? "O Render vai executar um pagamento demo real e liberar a API."
+          : "O backend respondeu, mas o buyer ainda não está configurado.";
+        unlockBtn.textContent = ready ? "Pagar demo e liberar" : "Backend sem buyer";
+
         setHead("Pronto");
         accessMini.textContent = "Pronta";
       }else if(connected && !isArc){
@@ -883,7 +940,7 @@
         app.classList.remove("connected");
         unlockBtn.disabled = true;
         unlockTitle.textContent = "Resposta bloqueada";
-        unlockText.textContent = "Conecte sua carteira antes de testar a API protegida.";
+        unlockText.textContent = "Conecte sua carteira antes de executar o pagamento demo.";
         setHead("Testnet");
         accessMini.textContent = "Bloqueada";
       }
@@ -957,4 +1014,4 @@
     checkBackend();
   </script>
 </body>
-</html>
+  </html>
