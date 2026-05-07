@@ -1348,8 +1348,8 @@
     }
 
     .wallet-icon{
-      width:34px;
-      height:34px;
+      width:36px;
+      height:36px;
       border-radius:50%;
       display:grid;
       place-items:center;
@@ -1359,9 +1359,22 @@
       color:#06111b;
       background:
         radial-gradient(circle at 35% 25%, #fff4c8, #c9a85b 45%, #5a421a 100%);
-      box-shadow:0 0 0 1px rgba(201,168,91,.20);
+      box-shadow:
+        0 0 0 1px rgba(201,168,91,.22),
+        0 0 14px rgba(88,214,255,.06),
+        inset 0 1px 0 rgba(255,255,255,.22);
       position:relative;
       overflow:hidden;
+    }
+
+    .wallet-icon::after{
+      content:"";
+      position:absolute;
+      inset:1px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.08);
+      pointer-events:none;
+      z-index:3;
     }
 
     .wallet-icon img{
@@ -1369,6 +1382,8 @@
       height:100%;
       object-fit:cover;
       display:block;
+      position:relative;
+      z-index:2;
     }
 
     .wallet-fallback{
@@ -1376,6 +1391,11 @@
       inset:0;
       display:grid;
       place-items:center;
+      z-index:1;
+    }
+
+    .wallet-icon.has-image .wallet-fallback{
+      display:none;
     }
 
     .wallet-name{
@@ -1734,7 +1754,7 @@
           <button class="wallet-option" data-wallet="injected">
             <div class="wallet-option-left">
               <div class="wallet-icon">
-                <img src="wallet-browser.png" alt="" onerror="this.style.display='none'" />
+                <img src="wallet-browser.png" alt="" onload="this.parentElement.classList.add('has-image')" onerror="this.style.display='none'" />
                 <span class="wallet-fallback">W</span>
               </div>
               <div>
@@ -1748,7 +1768,7 @@
           <button class="wallet-option" data-wallet="metamask">
             <div class="wallet-option-left">
               <div class="wallet-icon">
-                <img src="wallet-metamask.png" alt="" onerror="this.style.display='none'" />
+                <img src="wallet-metamask.png" alt="" onload="this.parentElement.classList.add('has-image')" onerror="this.style.display='none'" />
                 <span class="wallet-fallback">M</span>
               </div>
               <div>
@@ -1762,7 +1782,7 @@
           <button class="wallet-option" data-wallet="rabby">
             <div class="wallet-option-left">
               <div class="wallet-icon">
-                <img src="wallet-rabby.png" alt="" onerror="this.style.display='none'" />
+                <img src="wallet-rabby.png" alt="" onload="this.parentElement.classList.add('has-image')" onerror="this.style.display='none'" />
                 <span class="wallet-fallback">R</span>
               </div>
               <div>
@@ -1776,7 +1796,7 @@
           <button class="wallet-option" data-wallet="okx">
             <div class="wallet-option-left">
               <div class="wallet-icon">
-                <img src="wallet-okx.png" alt="" onerror="this.style.display='none'" />
+                <img src="wallet-okx.png" alt="" onload="this.parentElement.classList.add('has-image')" onerror="this.style.display='none'" />
                 <span class="wallet-fallback">O</span>
               </div>
               <div>
@@ -2354,4 +2374,4 @@
     checkBackend();
   </script>
 </body>
-  </html>
+</html>
