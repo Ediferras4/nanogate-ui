@@ -1798,7 +1798,7 @@
               </div>
               <div>
                 <div class="wallet-name">MetaMask</div>
-                <div class="wallet-note">Use injected provider</div>
+                <div class="wallet-note">Connect through browser</div>
               </div>
             </div>
             <div class="wallet-arrow">›</div>
@@ -1812,7 +1812,7 @@
               </div>
               <div>
                 <div class="wallet-name">Rabby</div>
-                <div class="wallet-note">Use injected provider</div>
+                <div class="wallet-note">Connect through browser</div>
               </div>
             </div>
             <div class="wallet-arrow">›</div>
@@ -1826,7 +1826,7 @@
               </div>
               <div>
                 <div class="wallet-name">OKX Wallet</div>
-                <div class="wallet-note">Use injected provider</div>
+                <div class="wallet-note">Connect through browser</div>
               </div>
             </div>
             <div class="wallet-arrow">›</div>
@@ -2107,9 +2107,10 @@
 
         await updateNetworkState();
 
+        closeWallet();
+
         if(isArc){
           setReadyState();
-          closeWallet();
         }else{
           unlockBtn.disabled = true;
           accessMini.textContent = "Wrong network";
@@ -2456,4 +2457,4 @@
     checkBackend();
   </script>
 </body>
-  </html>
+                                  </html>
