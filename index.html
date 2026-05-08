@@ -1905,6 +1905,7 @@
     let backendOnline = false;
     let buyerConfigured = false;
     let demoLimit = 30;
+    let activeProvider = null;
 
     function shortAddress(address){
       if(!address || address.length < 12) return address;
@@ -1920,8 +1921,94 @@
       headChip.innerHTML = '<span class="head-dot"></span>' + label;
     }
 
-    function hasEthereum(){
-      return typeof window !== "undefined" && Boolean(window.ethereum);
+    function allProviders(){
+      const list = [];
+
+      if(typeof window === "undefined") return list;
+
+      if(window.ethereum){
+        if(Array.isArray(window.ethereum.providers)){
+          window.ethereum.providers.forEach((provider) => {
+            if(provider && !list.includes(provider)){
+              list.push(provider);
+            }
+          });
+        }
+
+        if(!list.includes(window.ethereum)){
+          list.push(window.ethereum);
+        }
+      }
+
+      if(window.okxwallet?.ethereum && !list.includes(window.okxwallet.ethereum)){
+        list.push(window.okxwallet.ethereum);
+      }
+
+      if(window.okxwallet && !list.includes(window.okxwallet)){
+        list.push(window.okxwallet);
+      }
+
+      if(window.rabby && !list.includes(window.rabby)){
+        list.push(window.rabby);
+      }
+
+      return list;
+    }
+
+    function providerScore(provider, type){
+      if(!provider) return 0;
+
+      if(type === "metamask"){
+        if(provider.isMetaMask && !provider.isRabby && !provider.isOkxWallet && !provider.isOKExWallet) return 10;
+        if(provider.isMetaMask) return 7;
+      }
+
+      if(type === "rabby"){
+        if(provider.isRabby) return 10;
+      }
+
+      if(type === "okx"){
+        if(provider.isOkxWallet || provider.isOKExWallet || provider.isOKXWallet) return 10;
+        if(typeof window !== "undefined" && window.okxwallet && (provider === window.okxwallet || provider === window.okxwallet.ethereum)) return 10;
+      }
+
+      if(type === "injected"){
+        return 1;
+      }
+
+      return 0;
+    }
+
+    function getProvider(type = "injected"){
+      const providers = allProviders();
+
+      if(type === "okx" && typeof window !== "undefined"){
+        if(window.okxwallet?.ethereum) return window.okxwallet.ethereum;
+        if(window.okxwallet) return window.okxwallet;
+      }
+
+      const ranked = providers
+        .map((provider) => ({ provider, score: providerScore(provider, type) }))
+        .sort((a, b) => b.score - a.score);
+
+      if(ranked.length && ranked[0].score > 0){
+        return ranked[0].provider;
+      }
+
+      if(type !== "injected"){
+        return getProvider("injected");
+      }
+
+      return providers[0] || null;
+    }
+
+    function hasWalletProvider(){
+      return Boolean(getProvider("injected"));
+    }
+
+    function getActiveProvider(){
+      if(activeProvider) return activeProvider;
+      return getProvider("injected");
     }
 
     function addHistory(title, sub, tag, mode = "ok"){
@@ -2010,12 +2097,15 @@
     }
 
     async function getChainId(){
-      if(!hasEthereum()) return null;
-      return await window.ethereum.request({ method:"eth_chainId" });
+      const provider = getActiveProvider();
+      if(!provider) return null;
+      return await provider.request({ method:"eth_chainId" });
     }
 
     async function updateNetworkState(){
-      if(!hasEthereum()){
+      const provider = getActiveProvider();
+
+      if(!provider){
         networkState.textContent = "No wallet";
         networkState.className = "network-state bad";
         switchArcBtn.classList.remove("show");
@@ -2045,19 +2135,21 @@
     }
 
     async function switchToArc(){
-      if(!hasEthereum()){
+      const provider = getActiveProvider();
+
+      if(!provider){
         openWalletSheet();
         return;
       }
 
       try{
-        await window.ethereum.request({
+        await provider.request({
           method:"wallet_switchEthereumChain",
           params:[{ chainId: ARC_CHAIN_ID_HEX }]
         });
       }catch(error){
         if(error && error.code === 4902){
-          await window.ethereum.request({
+          await provider.request({
             method:"wallet_addEthereumChain",
             params:[ARC_PARAMS]
           });
@@ -2075,15 +2167,27 @@
       }
     }
 
-    async function connectWallet(){
-      if(!hasEthereum()){
+    async function connectWallet(walletType = "injected"){
+      const provider = getProvider(walletType);
+
+      if(!provider){
         networkState.textContent = "Wallet not found";
         networkState.className = "network-state bad";
+
+        addHistory(
+          "Wallet not found",
+          "Open this page inside your wallet browser or enable the extension",
+          "Wallet",
+          "bad"
+        );
+
         return;
       }
 
       try{
-        const accounts = await window.ethereum.request({
+        activeProvider = provider;
+
+        const accounts = await provider.request({
           method:"eth_requestAccounts"
         });
 
@@ -2290,6 +2394,7 @@
       paid = false;
       currentAccount = "";
       isArc = false;
+      activeProvider = null;
 
       app.classList.remove("connected", "paid", "paying", "error");
 
@@ -2407,7 +2512,10 @@
     });
 
     document.querySelectorAll(".wallet-option").forEach((button) => {
-      button.addEventListener("click", connectWallet);
+      button.addEventListener("click", () => {
+        const walletType = button.dataset.wallet || "injected";
+        connectWallet(walletType);
+      });
     });
 
     unlockBtn.addEventListener("click", runDemoPayment);
@@ -2425,8 +2533,10 @@
       }
     });
 
-    if(hasEthereum()){
-      window.ethereum.on?.("accountsChanged", (accounts) => {
+    function registerProviderListeners(provider){
+      if(!provider || !provider.on) return;
+
+      provider.on("accountsChanged", (accounts) => {
         currentAccount = accounts && accounts[0] ? accounts[0] : "";
 
         if(!currentAccount){
@@ -2439,7 +2549,7 @@
         connectedLine.textContent = shortAddress(currentAccount);
       });
 
-      window.ethereum.on?.("chainChanged", async () => {
+      provider.on("chainChanged", async () => {
         await updateNetworkState();
 
         if(connected && isArc){
@@ -2454,7 +2564,9 @@
       });
     }
 
+    allProviders().forEach(registerProviderListeners);
+
     checkBackend();
   </script>
 </body>
-                                  </html>
+                  </html>
