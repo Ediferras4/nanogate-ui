@@ -627,6 +627,31 @@
       display:none;
     }
 
+    .btn-blue.disconnect-mode{
+      color:#fff3cf;
+      border-color:rgba(201,168,91,.24);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(237,209,138,.15), transparent 38%),
+        linear-gradient(180deg, rgba(33,25,12,.96), rgba(12,9,5,.98));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.075),
+        inset 0 -1px 0 rgba(88,214,255,.05),
+        0 12px 24px rgba(0,0,0,.28),
+        0 0 18px rgba(201,168,91,.08);
+    }
+
+    .btn-blue.disconnect-mode::before{
+      background:
+        radial-gradient(circle at 35% 25%, #fff4c8, #c9a85b 48%, #5a421a 100%);
+      box-shadow:
+        0 0 12px rgba(201,168,91,.44),
+        0 0 0 1px rgba(201,168,91,.22);
+    }
+
+    .btn-blue.disconnect-mode::after{
+      display:none;
+    }
+
     @keyframes walletSweep{
       0%, 58%{ left:-96px; }
       80%{ left:120%; }
@@ -2076,8 +2101,9 @@
         connectedLine.textContent = shortAddress(currentAccount);
         copyWalletBtn.disabled = false;
 
-        connectBtn.textContent = "Wallet connected";
-        connectBtn.disabled = true;
+        connectBtn.textContent = "Disconnect";
+        connectBtn.disabled = false;
+        connectBtn.classList.add("disconnect-mode");
 
         await updateNetworkState();
 
@@ -2258,6 +2284,63 @@
       }
     }
 
+    function disconnectWalletSession(){
+      connected = false;
+      paid = false;
+      currentAccount = "";
+      isArc = false;
+
+      app.classList.remove("connected", "paid", "paying", "error");
+
+      walletStatus.className = "pill locked";
+      walletStatus.innerHTML = '<span class="led"></span>Offline';
+
+      walletValue.textContent = "Not connected";
+      connectedLine.textContent = "Not connected";
+
+      copyWalletBtn.disabled = true;
+
+      connectBtn.textContent = "Connect wallet";
+      connectBtn.disabled = false;
+      connectBtn.classList.remove("disconnect-mode");
+
+      unlockBtn.disabled = true;
+      unlockBtn.textContent = "Run demo payment";
+
+      passStatus.textContent = "Locked";
+      accessMini.textContent = "Locked";
+
+      unlockTitle.textContent = "Response locked";
+      unlockText.textContent = "Connect your wallet before running the Render demo payment.";
+
+      receiptPill.className = "pill locked";
+      receiptPill.innerHTML = '<span class="led"></span>402';
+
+      receiptTitle.textContent = "Request receipt";
+      proofText.textContent = "Waiting for payment";
+      receiptResult.textContent = "HTTP 402";
+      amountLine.textContent = "$0.001 USDC";
+      limitLine.textContent = `${demoLimit} per wallet`;
+      apiText.textContent = "The protected route has not been unlocked yet.";
+
+      resetBtn.classList.add("hidden");
+
+      topNetwork.textContent = "Arc";
+      setHead("Testnet");
+
+      historyList.innerHTML = `
+        <div class="history-item">
+          <div>
+            <div class="history-title">Wallet disconnected</div>
+            <div class="history-sub">Session cleared locally in NanoGate</div>
+          </div>
+          <div class="tiny idle">Off</div>
+        </div>
+      `;
+
+      closeWallet();
+    }
+
     function resetSession(){
       paid = false;
 
@@ -2306,7 +2389,15 @@
       resetBtn.classList.add("hidden");
     }
 
-    connectBtn.addEventListener("click", openWalletSheet);
+    connectBtn.addEventListener("click", () => {
+      if(connected){
+        disconnectWalletSession();
+        return;
+      }
+
+      openWalletSheet();
+    });
+
     closeWalletSheet.addEventListener("click", closeWallet);
     switchArcBtn.addEventListener("click", switchToArc);
 
@@ -2338,16 +2429,7 @@
         currentAccount = accounts && accounts[0] ? accounts[0] : "";
 
         if(!currentAccount){
-          connected = false;
-          currentAccount = "";
-          walletValue.textContent = "Not connected";
-          connectedLine.textContent = "Not connected";
-          copyWalletBtn.disabled = true;
-          connectBtn.disabled = false;
-          connectBtn.textContent = "Connect wallet";
-          walletStatus.className = "pill locked";
-          walletStatus.innerHTML = '<span class="led"></span>Offline';
-          resetSession();
+          disconnectWalletSession();
           return;
         }
 
@@ -2374,4 +2456,4 @@
     checkBackend();
   </script>
 </body>
-</html>
+  </html>
